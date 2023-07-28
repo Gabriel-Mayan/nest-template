@@ -2,25 +2,14 @@ import 'reflect-metadata';
 import { Injectable } from '@nestjs/common';
 import { DataSource, DataSourceOptions, ObjectType, Repository } from 'typeorm';
 
+import DatabaseConfig from '@config/database.config';
+
 @Injectable()
-export class TypeOrmService {
+export class DatabaseService {
   private config: DataSourceOptions;
 
   constructor() {
-    this.config = {
-      url: process.env.DB_URL,
-      type: process.env.DB_CLIENT as any,
-      host: process.env.DB_HOST,
-      port: Number(process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      synchronize: false,
-      logging: false,
-      entities: [],
-      migrations: [],
-      subscribers: [],
-    };
+    this.config = DatabaseConfig;
   }
 
   private generateAppDataSource(): DataSource {

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 
 @Injectable()
-export class AxiosService {
+export class HttpService {
   private baseUrl = process.env.API_URL;
 
   private getApiInstance(): AxiosInstance {
