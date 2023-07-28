@@ -27,9 +27,12 @@
     "paths": {
       "@/*": ["*"],
       "@test/*": ["./test/*"],
-      "@app/*": ["./src/app/*"],
       "@common/*": ["./src/common/*"],
-      "@config/*": ["./src/config/*"],   
+      "@config/*": ["./src/config/*"],
+
+      "@shared/*": ["./src/app/shared/*"], 
+      "@modules/*": ["./src/app/modules/*"], 
+      "@factories/*": ["./src/app/factories/*"],
     }
   },
 }
