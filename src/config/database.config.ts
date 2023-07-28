@@ -1,4 +1,7 @@
+import dotenv from 'dotenv';
 import { DataSourceOptions } from 'typeorm';
+
+dotenv.config();
 
 const config: DataSourceOptions = {
   url: process.env.DB_URL,
@@ -10,7 +13,7 @@ const config: DataSourceOptions = {
   database: process.env.DB_DATABASE,
   synchronize: false,
   logging: false,
-  entities: [],
+  entities: ['src/modules/**/*.entity.ts'],
   migrations: [],
   subscribers: [],
 };

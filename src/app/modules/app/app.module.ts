@@ -3,11 +3,12 @@ import { Module, OnModuleInit } from '@nestjs/common';
 import { DatabaseService } from '@factories/database.factory';
 import { WatchErrorService } from '@factories/watch-error.factory';
 
+import { AppService } from './app.service';
 import { AppController } from './app.controller';
 
 @Module({
   controllers: [AppController],
-  providers: [WatchErrorService, DatabaseService],
+  providers: [WatchErrorService, DatabaseService, AppService],
 })
 export class AppModule implements OnModuleInit {
   constructor(
