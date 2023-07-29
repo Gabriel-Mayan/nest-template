@@ -5,8 +5,10 @@ import { WatchErrorService } from '@factories/watch-error.factory';
 
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
+import { UsersModule } from '../users/user.module';
 
 @Module({
+  imports: [UsersModule],
   controllers: [AppController],
   providers: [WatchErrorService, DatabaseService, AppService],
 })
