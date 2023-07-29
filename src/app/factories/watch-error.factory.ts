@@ -3,8 +3,8 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class WatchErrorService {
-  private dsn = process.env.SENTRY_URL;
   private tracesSampleRate = 1.0;
+  private dsn = process.env.SENTRY_URL;
 
   async initialize() {
     return sentry.init({

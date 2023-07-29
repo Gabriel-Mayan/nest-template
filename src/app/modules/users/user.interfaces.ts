@@ -6,7 +6,7 @@ export interface IDatabaseUser {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date | null;
+  deletedAt?: Date;
 }
 
 export interface IUpdateUser {
