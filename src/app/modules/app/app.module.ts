@@ -1,27 +1,22 @@
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module, OnModuleInit } from '@nestjs/common';
 
-import { DatabaseService } from '@factories/database.factory';
 import { WatchErrorService } from '@factories/watch-error.factory';
 
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
-import { UsersModule } from '../users/user.module';
 
+import { UsersModule } from '@modules/users/user.module';
+import { databaseConfig } from '@/src/config/database.config';
 @Module({
-  imports: [UsersModule],
   controllers: [AppController],
-  providers: [WatchErrorService, DatabaseService, AppService],
+  imports: [TypeOrmModule.forRoot(databaseConfig), UsersModule],
+  providers: [WatchErrorService, AppService],
 })
 export class AppModule implements OnModuleInit {
-  constructor(
-    private readonly databaseService: DatabaseService,
-    private readonly watchErrorService: WatchErrorService,
-  ) {}
+  constructor(private readonly watchErrorService: WatchErrorService) {}
 
   async onModuleInit() {
-    await Promise.all([
-      this.databaseService.initialize(),
-      this.watchErrorService.initialize(),
-    ]);
+    await Promise.all([this.watchErrorService.initialize()]);
   }
 }

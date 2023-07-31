@@ -3,7 +3,7 @@ import { Entity, Column } from 'typeorm';
 import { BaseEntity } from '@shared/utils/base-entity.util';
 
 @Entity()
-class User extends BaseEntity {
+export class User extends BaseEntity {
   @Column('varchar', { length: 100, nullable: false })
   name: string;
 
@@ -16,5 +16,3 @@ class User extends BaseEntity {
   @Column('boolean', { nullable: false, default: false })
   isActive: boolean;
 }
-
-export default User;

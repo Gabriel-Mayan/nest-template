@@ -1,9 +1,10 @@
-import dotenv from 'dotenv';
-import { DataSourceOptions } from 'typeorm';
+import * as dotenv from 'dotenv';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { User } from '@modules/users/user.entity';
 
 dotenv.config();
 
-const config: DataSourceOptions = {
+export const databaseConfig: TypeOrmModuleOptions = {
   url: process.env.DB_URL,
   type: process.env.DB_CLIENT as any,
   host: process.env.DB_HOST,
@@ -11,11 +12,9 @@ const config: DataSourceOptions = {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  synchronize: false,
+  synchronize: true,
   logging: false,
-  entities: ['src/modules/**/*.entity.ts'],
+  entities: [User],
   migrations: [],
   subscribers: [],
 };
-
-export default config;
