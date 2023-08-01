@@ -3,14 +3,17 @@ import { Module, OnModuleInit } from '@nestjs/common';
 
 import { WatchErrorService } from '@factories/watch-error.factory';
 
+import { AuthModule } from '@modules/auth/auth.module';
+import { UsersModule } from '@modules/users/user.module';
+
+import { databaseConfig } from '@config/database.config';
+
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 
-import { UsersModule } from '@modules/users/user.module';
-import { databaseConfig } from '@/src/config/database.config';
 @Module({
   controllers: [AppController],
-  imports: [TypeOrmModule.forRoot(databaseConfig), UsersModule],
+  imports: [TypeOrmModule.forRoot(databaseConfig), UsersModule, AuthModule],
   providers: [WatchErrorService, AppService],
 })
 export class AppModule implements OnModuleInit {

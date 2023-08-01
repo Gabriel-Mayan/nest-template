@@ -23,6 +23,7 @@ module.exports = {
     '.eslintrc.js'
   ],
   rules: {
+    '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',

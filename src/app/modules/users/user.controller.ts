@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
 
 import { UserService } from './user.service';
 import { ICreateUser } from './user.interfaces';
@@ -8,7 +8,17 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  async createUser(@Body() user: ICreateUser): Promise<void> {
-    await this.userService.createUser(user);
+  @HttpCode(HttpStatus.CREATED)
+  async createUser(@Body() user: ICreateUser) {
+    const { name, email, password } = user;
+
+    const newUser: ICreateUser = {
+      name,
+      email,
+      password: await this.userService.encryptPassword(password),
+      isActive: true,
+    };
+
+    await this.userService.createUser(newUser);
   }
 }
